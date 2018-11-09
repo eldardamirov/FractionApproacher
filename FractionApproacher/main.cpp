@@ -9,6 +9,7 @@
 #include <iostream>
 #include <vector>
 
+
 struct fraction
     {
     void divideBy ( int divider )
@@ -20,15 +21,22 @@ struct fraction
     int term = 0;
     int denominator = 0;
     };
+
+struct chainFraction
+    {
+    int intPart = 0;
+    fraction tempFraction = NULL;
+    chainFraction* fractionPart = nullptr;
+    };
     
 struct approachingTable
     {
     size_t numberOfIterations = 0;
-    int* temp = nullptr; 
+    fraction* storage = nullptr;
     
     void init()
         {
-        temp = new int [ numberOfIterations ];
+        storage = new fraction [ numberOfIterations ];
         }
     };
 
@@ -84,9 +92,22 @@ class Fraction
     
     };
 
+
+
 int main()
     {
+    fraction temp { 21, 7 };
 
+    
+    approachingTable table;
+    
+    bool flag = true;
+    
+    while ( flag )
+        {
+        
+        }
+    
     
     return 0;
     }
