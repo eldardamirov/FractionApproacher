@@ -69,7 +69,7 @@ class Fraction
             {
             std::vector <int> result{};
             
-            for ( int i = 1; i < number; i++ )
+            for ( int i = 1; i <= number; i++ )
                 {
                 if ( number % i == 0 )
                     {
@@ -84,50 +84,10 @@ class Fraction
     
     };
 
-
-void simplifyFraction ( fraction storage );
-std::vector <int> defineDividers ( int number );
-
-
-
 int main()
     {
-    fraction temp { 21, 7 };
-    simplifyFraction ( temp );
+
     
     return 0;
     }
 
-void simplifyFraction ( fraction storage )
-    {
-    std::vector <int> termDividers = defineDividers ( storage.term );
-    std::vector <int> denominatorDividers = defineDividers ( storage.denominator );
-    
-    int overallCommonMultiplier = 1;
-    
-    for ( auto i = termDividers.begin(); i != termDividers.end(); i++ )
-        {
-        if ( std::find ( denominatorDividers.begin(), denominatorDividers.end(), *i ) != denominatorDividers.end() )
-            {
-            overallCommonMultiplier *= *i;
-            }
-        }
-        
-    storage.divideBy ( overallCommonMultiplier );
-    printf ( "%d %d", storage.term, storage.denominator );
-    }
-
-std::vector <int> defineDividers ( int number )
-            {
-            std::vector <int> result{};
-            
-            for ( int i = 1; i <= number; i++ )
-                {
-                if ( number % i == 0 )
-                    {
-                    result.push_back ( i );
-                    }
-                }
-                
-            return result;
-            }
