@@ -8,9 +8,31 @@
 
 #include <iostream>
 
+struct fraction
+    {
+    int denominator = 0;
+    int temp = 0;
+    };
+
 int main(int argc, const char * argv[]) 
     {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+    
+    
+    
     }
+    
+class Fraction
+    {
+    public:
+    
+    Fraction ( double initialNumber )
+        {
+        
+        }
+    
+    
+    private:
+        
+    
+    
+    };
