@@ -10,8 +10,20 @@
 
 struct fraction
     {
+    
     int denominator = 0;
-    int temp = 0;
+    int term = 0;
+    };
+    
+struct approachingTable
+    {
+    size_t numberOfIterations = 0;
+    int* temp = nullptr; 
+    
+    void init()
+        {
+        temp = new int [ numberOfIterations ];
+        }
     };
 
 int main(int argc, const char * argv[]) 
@@ -32,7 +44,9 @@ class Fraction
     
     
     private:
+        fraction storage { 0, 0 };
         
-    
+        
+        
     
     };
