@@ -7,12 +7,18 @@
 //
 
 #include <iostream>
+#include <vector>
 
 struct fraction
     {
+    void divideBy ( int divider )
+        {
+        denominator /= divider;
+        term /= divider;
+        }
     
-    int denominator = 0;
     int term = 0;
+    int denominator = 0;
     };
     
 struct approachingTable
@@ -26,12 +32,7 @@ struct approachingTable
         }
     };
 
-int main(int argc, const char * argv[]) 
-    {
-    
-    
-    
-    }
+
     
 class Fraction
     {
@@ -46,7 +47,87 @@ class Fraction
     private:
         fraction storage { 0, 0 };
         
+        void simplifyFraction()
+            {
+            std::vector <int> termDividers = defineDividers ( storage.term );
+            std::vector <int> denominatorDividers = defineDividers ( storage.denominator );
+            
+            int overallCommonMultiplier = 1;
+            
+            for ( auto i = termDividers.begin(); i != termDividers.end(); i++ )
+                {
+                if ( std::find ( denominatorDividers.begin(), denominatorDividers.end(), *i ) != denominatorDividers.end() )
+                    {
+                    overallCommonMultiplier *= *i;
+                    }
+                }
+                
+            storage.divideBy ( overallCommonMultiplier );
+            }
+            
+        std::vector <int> defineDividers ( int number )
+            {
+            std::vector <int> result{};
+            
+            for ( int i = 1; i < number; i++ )
+                {
+                if ( number % i == 0 )
+                    {
+                    result.push_back ( i );
+                    }
+                }
+                
+            return result;
+            }
         
         
     
     };
+
+
+void simplifyFraction ( fraction storage );
+std::vector <int> defineDividers ( int number );
+
+
+
+int main()
+    {
+    fraction temp { 21, 7 };
+    simplifyFraction ( temp );
+    
+    return 0;
+    }
+
+void simplifyFraction ( fraction storage )
+    {
+    std::vector <int> termDividers = defineDividers ( storage.term );
+    std::vector <int> denominatorDividers = defineDividers ( storage.denominator );
+    
+    int overallCommonMultiplier = 1;
+    
+    for ( auto i = termDividers.begin(); i != termDividers.end(); i++ )
+        {
+        if ( std::find ( denominatorDividers.begin(), denominatorDividers.end(), *i ) != denominatorDividers.end() )
+            {
+            overallCommonMultiplier *= *i;
+            }
+        }
+        
+    storage.divideBy ( overallCommonMultiplier );
+    printf ( "%d %d", storage.term, storage.denominator );
+    }
+
+std::vector <int> defineDividers ( int number )
+            {
+            std::vector <int> result{};
+            
+            for ( int i = 1; i <= number; i++ )
+                {
+                if ( number % i == 0 )
+                    {
+                    result.push_back ( i );
+                    }
+                }
+                
+            return result;
+            }
