@@ -9,6 +9,11 @@
 #include <iostream>
 #include <vector>
 
+//    result.intPart = temp.denominator / temp.term;
+//    result.tempFraction.term = temp.denominator - temp.term;
+//    result.tempFraction.denominator = temp.term;
+//    
+
 
 struct fraction
     {
@@ -25,8 +30,34 @@ struct fraction
 struct chainFraction
     {
     int intPart = 0;
-    fraction tempFraction = NULL;
+    fraction tempFraction { 0, 0 };
     chainFraction* fractionPart = nullptr;
+    
+    bool flag = true;
+    
+    chainFraction* iteration()
+        {
+        printf ( "intPart: %d, tempFraction: %d/%d \n", intPart, tempFraction.term, tempFraction.denominator );
+        
+        fractionPart = new chainFraction;
+        fractionPart->intPart = tempFraction.denominator / tempFraction.term;
+        fractionPart->tempFraction.term = tempFraction.denominator - tempFraction.term;
+        fractionPart->tempFraction.denominator = tempFraction.term;
+        
+        return fractionPart;
+        }
+        
+    bool checkForSimpliness()
+        {
+        if ( ( tempFraction.term == 1 ) || ( flag == false ) )
+            {
+            return false;
+            }
+        else
+            {
+            return true;
+            }
+        }
     };
     
 struct approachingTable
@@ -96,17 +127,26 @@ class Fraction
 
 int main()
     {
-    fraction temp { 21, 7 };
+    fraction temp { 63, 100 };
+    chainFraction result;
 
     
     approachingTable table;
     
     bool flag = true;
     
+    result.intPart = temp.denominator / temp.term;
+    result.tempFraction.term = temp.denominator - temp.term;
+    result.tempFraction.denominator = temp.term;
+    
+    auto* current = result.iteration();;
+    
     while ( flag )
         {
-        
+        current = current->iteration();
+        flag = current->checkForSimpliness();
         }
+    
     
     
     return 0;
