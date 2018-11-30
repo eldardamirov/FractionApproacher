@@ -81,6 +81,19 @@ class Fraction
         {
         
         }
+        
+    Fraction ( int termTemp, int denominatorTemp )
+        {
+        this->storage.term = termTemp;
+        this->storage.denominator = denominatorTemp;
+        }
+        
+    
+    Fraction operator+ ( Fraction& fractionToAdd )
+        {
+        Fraction resultFreaction 
+        this->storage.term 
+        }
     
     
     private:
@@ -130,6 +143,8 @@ int main()
     fraction temp { 63, 100 };
     chainFraction result;
 
+    
+    
     
     approachingTable table;
     
