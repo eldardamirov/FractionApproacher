@@ -91,8 +91,11 @@ class Fraction
     
     Fraction operator+ ( Fraction& fractionToAdd )
         {
-        Fraction resultFreaction 
-        this->storage.term 
+        Fraction resultFreaction ( 0, 0 ); 
+        resultFreaction.storage.term = ( this->storage.term * fractionToAdd.storage.denominator ) + ( fractionToAdd.storage.term * this->storage.denominator );
+        resultFreaction.storage.denominator = ( this->storage.denominator * fractionToAdd.storage.denominator );
+        
+        return resultFreaction;
         }
     
     
