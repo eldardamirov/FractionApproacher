@@ -205,22 +205,41 @@ int main()
         counter++;
         }
         
-    int* line = new int [ counter ];
+    int* line = new int [ counter + 1 ];
     
+
     
-    for ( int i = 0; i <= counter; i++ )
+    for ( int i = 0; i < ( counter + 1 ); i++ )
         {
         line [ i ] = root->intPart;
         printf ( "%d - %d; \n", root->intPart, root->tempFraction.term );
         root = root->fractionPart;
         }
 
-    for ( int i = 0; i <= counter; i++ )
+    for ( int i = 0; i < ( counter + 1 ); i++ )
         {
         printf ( "AA: %d ", line [ i ] );
         }
     
     
+    table.numberOfIterations = counter + 3;
+    table.init(); 
+ 
+    table.storage [ 0 ] = { 1, 0 };
+    table.storage [ 1 ] = { 0, 1 };
+    
+    for ( int i = 2; i < ( counter + 2 ); i++ )
+        {
+        table.storage [ i ].term = ( table.storage [ ( i - 1 ) ].term * line [ i - 2 ] ) + table.storage [ i - 2 ].term;
+        table.storage [ i ].denominator = ( table.storage [ ( i - 1 ) ].denominator * line [ i - 2 ] ) + table.storage [ i - 2 ].denominator;
+        }
+    
+    
+ 
+//    for 
+ 
     return 0;
     }
+
+
 
