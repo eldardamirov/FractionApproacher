@@ -228,13 +228,22 @@ int main()
     table.storage [ 0 ] = { 1, 0 };
     table.storage [ 1 ] = { 0, 1 };
     
-    for ( int i = 2; i < ( counter + 2 ); i++ )
+    for ( int i = 2; i < ( counter + 3 ); i++ )
         {
         table.storage [ i ].term = ( table.storage [ ( i - 1 ) ].term * line [ i - 2 ] ) + table.storage [ i - 2 ].term;
         table.storage [ i ].denominator = ( table.storage [ ( i - 1 ) ].denominator * line [ i - 2 ] ) + table.storage [ i - 2 ].denominator;
         }
     
-    
+    printf ( "Table: \n" );
+    for ( int i = 0; i < ( counter + 3 ); i++ )
+        {
+        printf ( "%d   ", table.storage [ i ].term );
+        }
+    printf ( "\n" );
+    for ( int i = 0; i < ( counter + 3 ); i++ )
+        {
+        printf ( "%d   ", table.storage [ i ].denominator );
+        }
  
 //    for 
  
