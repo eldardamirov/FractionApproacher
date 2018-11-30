@@ -95,6 +95,41 @@ class Fraction
         resultFreaction.storage.term = ( this->storage.term * fractionToAdd.storage.denominator ) + ( fractionToAdd.storage.term * this->storage.denominator );
         resultFreaction.storage.denominator = ( this->storage.denominator * fractionToAdd.storage.denominator );
         
+        simplifyFraction();
+        
+        return resultFreaction;
+        }
+        
+    Fraction operator- ( Fraction& fractionToAdd )
+        {
+        Fraction resultFreaction ( 0, 0 ); 
+        resultFreaction.storage.term = ( this->storage.term * fractionToAdd.storage.denominator ) - ( fractionToAdd.storage.term * this->storage.denominator );
+        resultFreaction.storage.denominator = ( this->storage.denominator * fractionToAdd.storage.denominator );
+        
+        simplifyFraction();
+        
+        return resultFreaction;
+        }
+        
+    Fraction operator* ( Fraction& fractionToAdd )
+        {
+        Fraction resultFreaction ( 0, 0 ); 
+        resultFreaction.storage.term = ( this->storage.term * fractionToAdd.storage.term );
+        resultFreaction.storage.denominator = ( this->storage.denominator * fractionToAdd.storage.denominator );
+        
+        simplifyFraction();
+        
+        return resultFreaction;
+        }
+    
+    Fraction operator/ ( Fraction& fractionToAdd )
+        {
+        Fraction resultFreaction ( 0, 0 ); 
+        resultFreaction.storage.term = ( this->storage.term * fractionToAdd.storage.denominator );
+        resultFreaction.storage.denominator = ( this->storage.denominator * fractionToAdd.storage.term );
+        
+        simplifyFraction();
+        
         return resultFreaction;
         }
     
