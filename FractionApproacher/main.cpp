@@ -41,7 +41,8 @@ struct chainFraction
         
         fractionPart = new chainFraction;
         fractionPart->intPart = tempFraction.denominator / tempFraction.term;
-        fractionPart->tempFraction.term = tempFraction.denominator - tempFraction.term;
+//        fractionPart->tempFraction.term = tempFraction.denominator - tempFraction.term;
+        fractionPart->tempFraction.term = tempFraction.denominator % tempFraction.term;
         fractionPart->tempFraction.denominator = tempFraction.term;
         
         return fractionPart;
@@ -181,8 +182,6 @@ int main()
     fraction temp { 63, 100 };
     chainFraction result;
 
-    
-    
     
     approachingTable table;
     
