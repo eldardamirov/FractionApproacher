@@ -37,7 +37,7 @@ struct chainFraction
     
     chainFraction* iteration()
         {
-        printf ( "intPart: %d, tempFraction: %d/%d \n", intPart, tempFraction.term, tempFraction.denominator );
+        printf ( "intPart: %d, tempFraction: %d/%d, term: %d \n", intPart, tempFraction.term, tempFraction.denominator );
         
         fractionPart = new chainFraction;
         fractionPart->intPart = tempFraction.denominator / tempFraction.term;
@@ -191,14 +191,34 @@ int main()
     result.tempFraction.term = temp.denominator - temp.term;
     result.tempFraction.denominator = temp.term;
     
-    auto* current = result.iteration();;
+    chainFraction* root = &result;
+    
+    chainFraction* current = result.iteration();
+    
+    
+    int counter = 0;
     
     while ( flag )
         {
         current = current->iteration();
         flag = current->checkForSimpliness();
+        counter++;
         }
+        
+    int* line = new int [ counter ];
     
+    
+    for ( int i = 0; i <= counter; i++ )
+        {
+        line [ i ] = root->intPart;
+        printf ( "%d - %d; \n", root->intPart, root->tempFraction.term );
+        root = root->fractionPart;
+        }
+
+    for ( int i = 0; i <= counter; i++ )
+        {
+        printf ( "AA: %d ", line [ i ] );
+        }
     
     
     return 0;
