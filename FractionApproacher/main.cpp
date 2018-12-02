@@ -40,9 +40,14 @@ struct chainFraction
         printf ( "intPart: %d, tempFraction: %d/%d, term: %d \n", intPart, tempFraction.term, tempFraction.denominator );
         
         fractionPart = new chainFraction;
-        fractionPart->intPart = tempFraction.denominator / tempFraction.term;
+        if ( tempFraction.term != 0 )
+            {
+            fractionPart->intPart = tempFraction.denominator / tempFraction.term;
+            fractionPart->tempFraction.term = tempFraction.denominator % tempFraction.term;
+            }
+        // TODO: check for tempFraction.term == 0!
 //        fractionPart->tempFraction.term = tempFraction.denominator - tempFraction.term;
-        fractionPart->tempFraction.term = tempFraction.denominator % tempFraction.term;
+//        fractionPart->tempFraction.term = tempFraction.denominator % tempFraction.term;
         fractionPart->tempFraction.denominator = tempFraction.term;
         
         return fractionPart;
@@ -179,7 +184,7 @@ class Fraction
 
 int main()
     {
-    fraction temp { 63, 100 };
+    fraction temp { 54, 100 };
     chainFraction result;
 
     
